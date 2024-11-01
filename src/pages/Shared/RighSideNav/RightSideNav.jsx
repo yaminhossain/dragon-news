@@ -8,6 +8,7 @@ import {
 import qSwimming from "../../../assets/qZone1.png";
 import qClass from "../../../assets/qZone2.png";
 import qPalyGround from "../../../assets/qZone3.png";
+import Banner from "../Banner/Banner";
 
 
 const RightSideNav = () => {
@@ -42,6 +43,7 @@ const RightSideNav = () => {
         <img src={qClass} alt="" />
         <img src={qPalyGround} alt="" />
       </div>
+      <Banner></Banner>
     </div>
   );
 };

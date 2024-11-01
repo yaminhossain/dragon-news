@@ -12,9 +12,8 @@ const LeftSideNav = () => {
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
-  console.log(catagories);
   return (
-    <div className="border">
+    <div className="px-4">
       <h1 className="text-black text-xl font-bold">All Category</h1>
       {catagories.map((category) => (
         <Link key={category.id} to={`/${category.id}`}>

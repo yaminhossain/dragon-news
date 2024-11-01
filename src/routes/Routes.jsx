@@ -4,6 +4,8 @@ import Home from "../pages/Home/Home";
 import About from "../pages/About/About";
 import Career from "../pages/Career/Career";
 import Login from "../pages/Login/Login";
+import newsLoader from "../loaders/newsloader";
+
 
 const router = createBrowserRouter(
     [
@@ -13,7 +15,8 @@ const router = createBrowserRouter(
             children:[
                 {
                     path:"/",
-                    element:<Home></Home>
+                    element:<Home></Home>,
+                    loader:newsLoader,
                 },
                 {
                     path:"/about",
