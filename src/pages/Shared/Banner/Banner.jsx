@@ -3,7 +3,7 @@ import background from '../../../assets/bg.png';
 const Banner = () => {
     return (
         <div className="relative">
-            <img src={background} alt="" />
+            <img src={background} alt="" className='h-full w-full object-contain' />
             {/* top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" >
                 <p className='text-center font-extrabold text-2xl text-white'>Create an Amazing Newspaper</p>

@@ -15,15 +15,17 @@ const Home = () => {
   changeable. Whenever something is changeable we need to use useState hook. Before clicking the button the app
   will display 6 news. So the array slicing method is used in here for slicing the array*/
   const [displayedNews, setDisplayedNews] = useState(allNews.slice(0, 6));
+  /* This state controls the visibility of button */
+  const [buttonVisibility,setButtonVisibility] = useState("block")
 
-
-  console.log("All news",allNews);
-  console.log("Displayed news",displayedNews);
+  // console.log("All news",allNews);
+  // console.log("Displayed news",displayedNews);
 
 
   /* Show all news */
   const displayAllNews = () => {
     setDisplayedNews(allNews);
+    setButtonVisibility("hidden")
     
   };
   return (
@@ -43,7 +45,7 @@ const Home = () => {
           ))}
 
           <button
-            className="btn btn-error text-white w-36 px-3 py-5 flex-nowrap rounded-none mx-auto block h-auto" 
+            className={`btn btn-error text-white w-36 px-3 py-5 flex-nowrap rounded-none mx-auto ${buttonVisibility} h-auto`}
             onClick={displayAllNews}
           >
             Show All
