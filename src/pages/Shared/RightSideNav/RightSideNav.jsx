@@ -10,8 +10,10 @@ import qClass from "../../../assets/qZone2.png";
 import qPalyGround from "../../../assets/qZone3.png";
 import Banner from "../Banner/Banner";
 
-
-const RightSideNav = () => {
+//This type of component passing as a props is not working
+// const RightSideNav = ({Component}) => {
+// console.log(Component);
+const RightSideNav = ({children}) => {
   return (
     <div className="px-4">
       <h1 className="text-xl font-bold text-black">Login With</h1>
@@ -39,11 +41,12 @@ const RightSideNav = () => {
 
       <div className="bg-gray-200 py-4 px-2">
         <h1 className="text-xl font-bold text-black">Q-Zone</h1>
-        <img src={qSwimming} alt="" />
-        <img src={qClass} alt="" />
-        <img src={qPalyGround} alt="" />
+        <img className="w-full h-full object-cover" src={qSwimming} alt="" />
+        <img className="w-full h-full object-cover" src={qClass} alt="" />
+        <img className="w-full h-full object-cover" src={qPalyGround} alt="" />
       </div>
-      <Banner></Banner>
+      {children}
+      {/* {props.banner}; */}
     </div>
   );
 };

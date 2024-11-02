@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import Header from "../Shared/Header/Header";
 import LeftSideNav from "../Shared/LeftSideNav/LeftSideNav";
 import Navbar from "../Shared/Navbar/Navbar";
-import RightSideNav from "../Shared/RighsideNav/RightSideNav";
+import RightSideNav from "../Shared/RightSideNav/RightSideNav";
 import BreakingNews from "./BreakingNews/BreakingNews";
 import { useLoaderData } from "react-router-dom";
 import NewsCard from "./NewsCard/NewsCard";
+import Banner from "../Shared/Banner/Banner";
 
 const Home = () => {
   /* Fetching all news from public folder using a loader inside the loader folder*/
@@ -16,17 +17,15 @@ const Home = () => {
   will display 6 news. So the array slicing method is used in here for slicing the array*/
   const [displayedNews, setDisplayedNews] = useState(allNews.slice(0, 6));
   /* This state controls the visibility of button */
-  const [buttonVisibility,setButtonVisibility] = useState("block")
+  const [buttonVisibility, setButtonVisibility] = useState("block");
 
   // console.log("All news",allNews);
   // console.log("Displayed news",displayedNews);
 
-
   /* Show all news */
   const displayAllNews = () => {
     setDisplayedNews(allNews);
-    setButtonVisibility("hidden")
-    
+    setButtonVisibility("hidden");
   };
   return (
     <div>
@@ -51,7 +50,7 @@ const Home = () => {
             Show All
           </button>
         </div>
-        <RightSideNav></RightSideNav>
+        <RightSideNav><Banner></Banner></RightSideNav>
       </div>
     </div>
   );

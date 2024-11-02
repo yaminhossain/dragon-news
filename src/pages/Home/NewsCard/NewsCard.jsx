@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { IoMdEye } from "react-icons/io";
 import { FaStar } from "react-icons/fa";
 const NewsCard = ({ news }) => {
-  console.log("All new in news card", news);
+  // console.log("All new in news card", news);
   const newsPublishingDate =
     news.author.published_date?.split(" ")[0] || moment().format("DD-mm-YYYY");
   return (
@@ -29,10 +29,10 @@ const NewsCard = ({ news }) => {
           className="rounded-md my-5 w-full h-full object-contain"
           alt=""
         />
-        <p className="mt-5 mb-1 text-gray-500">{news.details?.slice(0,201)}...</p>
+        <p className="mt-5 mb-1 text-gray-500 text-justify">{news.details?.slice(0,201)}...</p>
         <Link
           className="bg-gradient-to-r from-[#FF8C47] to-[#F75B5F] bg-clip-text text-transparent font-semibold"
-          to="/"
+          to={`/news-details/${news._id}`}
         >
           Read More
         </Link>
