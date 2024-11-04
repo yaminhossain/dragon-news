@@ -7,6 +7,7 @@ import Login from "../pages/Login/Login";
 import newsLoader from "../loaders/newsloader";
 import NewsDetails from "../pages/NewsDetails/NewsDetails";
 import newsDetailsLoader from "../loaders/newsDetailsLoader";
+import Register from "../pages/Register/Register";
 
 
 const router = createBrowserRouter(
@@ -29,13 +30,17 @@ const router = createBrowserRouter(
                     element:<Career></Career>
                 },
                 {
+                    path:"/news-details/:id",
+                    element:<NewsDetails></NewsDetails>,
+                    loader:newsDetailsLoader,
+                },
+                {
                     path:"/login",
                     element:<Login></Login>
                 },
                 {
-                    path:"/news-details/:id",
-                    element:<NewsDetails></NewsDetails>,
-                    loader:newsDetailsLoader,
+                    path:"/register",
+                    element:<Register></Register>
                 }
             ]
         }
