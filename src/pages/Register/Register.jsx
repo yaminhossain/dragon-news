@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Navbar from "../Shared/Navbar/Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const Register = () => {
-  const { user, signInWithEmailPassword, applicationSignOut } = useContext(AuthContext);
+  const { user, signUpWithEmailPassword} = useContext(AuthContext);
+  const navigate = useNavigate();
   const registrationFormHandler = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
@@ -14,11 +15,13 @@ const Register = () => {
     const password = form.get("password");
     // console.log(name, photo,email,password);
     e.target.reset();
-    signInWithEmailPassword(email, password)
+    signUpWithEmailPassword(email, password)
       .then((userCredential) => {
  
-        const user = userCredential.user;
-        console.log("User from the local",user);
+        const userData = userCredential.user;
+        if(userData){
+           navigate("/login");
+        }
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -28,6 +31,8 @@ const Register = () => {
   console.log("User from context ",user);
   return (
     <div className="lg:h-[100vh] md:h-auto h-[100vh]">
+      
+
       <div className="py-6">
         <Navbar></Navbar>
       </div>

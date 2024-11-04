@@ -1,7 +1,43 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../Shared/Navbar/Navbar";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProviders";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { signIn, googleSignIn,user } = useContext(AuthContext);
+
+  console.log("From log in route and its state value", location.state?.pathname);
+
+  const googleSignInHandler = () => {
+    googleSignIn()
+      .then((user) => {
+        console.log(user);
+        navigate(location?.state?.pathname ? location.state.pathname : "/")
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  };
+
+  const formLoginHandler = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password");
+
+    signIn(email, password)
+      .then((userData) => {
+        console.log(userData);
+        navigate(location?.state?.pathname ? location.state.pathname : "/"); // USing option chaining to defend null
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  };
+
   return (
     <div className="lg:h-[100vh] md:h-auto h-[100vh]">
       <div className="py-6">
@@ -13,7 +49,7 @@ const Login = () => {
           Login your account
         </h1>
         <hr className="my-6" />
-        <form>
+        <form onSubmit={formLoginHandler}>
           <label className="block " htmlFor="email">
             Email Address
           </label>
@@ -44,6 +80,15 @@ const Login = () => {
             Register
           </Link>
         </p>
+        <hr className="my-4" />
+
+        <button
+          className="btn btn-primary rounded-none w-full h-full mb-3"
+          onClick={googleSignInHandler}
+        >
+          <FcGoogle className="w-6 h-6" />
+          SignIn with Google
+        </button>
       </div>
       {/* </div> */}
     </div>

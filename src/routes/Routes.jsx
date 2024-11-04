@@ -8,43 +8,45 @@ import newsLoader from "../loaders/newsloader";
 import NewsDetails from "../pages/NewsDetails/NewsDetails";
 import newsDetailsLoader from "../loaders/newsDetailsLoader";
 import Register from "../pages/Register/Register";
+import PrivateRoute from "./PrivateRoutes/PrivateRoute";
 
-
-const router = createBrowserRouter(
-    [
-        {
-            path:"/",
-            element:<Root></Root>,
-            children:[
-                {
-                    path:"/",
-                    element:<Home></Home>,
-                    loader:newsLoader,
-                },
-                {
-                    path:"/about",
-                    element:<About></About>
-                },
-                {
-                    path:"/career",
-                    element:<Career></Career>
-                },
-                {
-                    path:"/news-details/:id",
-                    element:<NewsDetails></NewsDetails>,
-                    loader:newsDetailsLoader,
-                },
-                {
-                    path:"/login",
-                    element:<Login></Login>
-                },
-                {
-                    path:"/register",
-                    element:<Register></Register>
-                }
-            ]
-        }
-    ]
-);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root></Root>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+        loader: newsLoader,
+      },
+      {
+        path: "/about",
+        element: <About></About>,
+      },
+      {
+        path: "/career",
+        element: <Career></Career>,
+      },
+      {
+        path: "/news-details/:id",
+        element: (
+          <PrivateRoute>
+            <NewsDetails></NewsDetails>
+          </PrivateRoute>
+        ),
+        loader: newsDetailsLoader,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+    ],
+  },
+]);
 
 export default router;
